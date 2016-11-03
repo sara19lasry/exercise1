@@ -9,7 +9,7 @@ $result   = mysqli_query($db,$query);
 $user  = mysqli_fetch_assoc($result);
   print_r($user);
 if($user){
-  require_once('views/layout.php');
+  require_once('views/layout.php');//this is the html structre include route file that have the function call to call controller 
 }
 else{
   header("location: index.php?err=user name or password are incorect");

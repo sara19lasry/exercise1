@@ -1,6 +1,6 @@
 
 <?php
-if(isset($_GET['err']))  echo $_GET['err'];
+if(isset($_GET['err']))  echo $_GET['err']; 
 ?>
 <form method="post" action="login.php">
     Welecome!<br>
