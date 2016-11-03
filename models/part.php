@@ -10,7 +10,7 @@
     public $description;
     public $sourceCarModel;
 
-    public function __construct($id, $carComponent, $price,$description,$sourceCarModel) {
+    public function __construct($id, $carComponent, $price,$description) {
 
       $this->id              = $id;
       $this->$carComponent   = $carComponent;
@@ -51,7 +51,7 @@
       $db = Db::getInstance();
       $req = $db->query('SELECT * FROM part where inStock=true');
       while($part = $req->fetch_assoc()) {
-        $partList[] = new Part($part['id'], $part['car_component'], $part['price'],$part['description'],$part['source_model_car']);
+        $partList[] = new Part($part['id'], $part['car_component'], $part['price'],$part['description']);
       }
       return $partList;
     }
@@ -61,6 +61,19 @@
       // we make sure $id is an integer
       $id = intval($id);
       $req = $db->prepare('SELECT * FROM posts WHERE id = :id');
+      // the query was prepared, now we replace :id with our actual $id value
+      $req->execute(array('id' => $id));
+      $post = $req->fetch();
+
+      return new Post($post['id'], $post['author'], $post['content']);
+    }
+
+     public static function insertPart($id, $carComponent, $price,$description) {
+
+       $db = Db::getInstance();
+      // we make sure $id is an integer
+      $id = intval($id);
+      $req = $db->prepare('INSERT into part( price,car_component, )');
       // the query was prepared, now we replace :id with our actual $id value
       $req->execute(array('id' => $id));
       $post = $req->fetch();
