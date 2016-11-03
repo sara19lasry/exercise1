@@ -8,7 +8,7 @@
       <script src="cnf/javascript.js"></script>
     </header>
 
-    <?php require_once('routes.php'); ?>
+    <?php require_once('../routes.php'); ?>
    
     <footer>
       Copyright
